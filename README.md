@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrasse Café - Projet Théâtral 2025-2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e91e63 0%, #9c27b0 50%, #3f51b5 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide:nth-child(1) { animation-delay: 0.1s; }
+        .slide:nth-child(2) { animation-delay: 0.2s; }
+        .slide:nth-child(3) { animation-delay: 0.3s; }
+        .slide:nth-child(4) { animation-delay: 0.4s; }
+        .slide:nth-child(5) { animation-delay: 0.5s; }
+        .slide:nth-child(6) { animation-delay: 0.6s; }
+        .slide:nth-child(7) { animation-delay: 0.7s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Slide de titre avec animation théâtrale */
+        .title-slide {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            text-align: center;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .title-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(233, 30, 99, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 193, 7, 0.3) 0%, transparent 50%);
+            animation: spotlights 10s ease-in-out infinite alternate;
+        }
+        
+        @keyframes spotlights {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        
+        .curtain-left, .curtain-right {
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(90deg, #8b0000, #cd5c5c);
+            opacity: 0.3;
+        }
+        
+        .curtain-left {
+            left: 0;
+            animation: curtainSlide 3s ease-out infinite alternate;
+        }
+        
+        .curtain-right {
+            right: 0;
+            animation: curtainSlide 3s ease-out infinite alternate-reverse;
+        }
+        
+        @keyframes curtainSlide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-20px); }
+        }
+        
+        .theater-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            animation: bounce 2s ease-in-out infinite;
+            z-index: 1;
+            position: relative;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            font-size: 4em;
+            margin-bottom: 20px;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.6em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            color: #ffd700;
+            font-weight: 300;
+        }
+        
+        .year-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h2 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e91e63, #ffd700);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            color: #9c27b0;
+            font-size: 1.8em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        
+        /* Cartes d'information */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 5px solid;
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        .info-card:nth-child(1) { 
+            border-left-color: #e91e63; 
+            animation-delay: 0.1s;
+        }
+        .info-card:nth-child(2) { 
+            border-left-color: #9c27b0; 
+            animation-delay: 0.2s;
+        }
+        .info-card:nth-child(3) { 
+            border-left-color: #3f51b5; 
+            animation-delay: 0.3s;
+        }
+        .info-card:nth-child(4) { 
+            border-left-color: #ffd700; 
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+        
+        /* Section des publics */
+        .audience-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .audience-item {
+            background: linear-gradient(135deg, #e91e63, #9c27b0);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .audience-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        }
+        
+        /* Thématiques */
+        .theme-container {
+            margin-top: 40px;
+        }
+        
+        .theme-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid;
+            animation: slideInRight 0.6s ease-out;
+        }
+        
+        .theme-item:nth-child(1) { 
+            border-left-color: #e91e63; 
+            animation-delay: 0.1s;
+        }
+        .theme-item:nth-child(2) { 
+            border-left-color: #9c27b0; 
+            animation-delay: 0.2s;
+        }
+        .theme-item:nth-child(3) { 
+            border-left-color: #3f51b5; 
+            animation-delay: 0.3s;
+        }
+        .theme-item:nth-child(4) { 
+            border-left-color: #ffd700; 
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .theme-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .theme-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .theme-text {
+            font-size: 1.2em;
+            color: #333;
+        }
+        
+        /* Objectifs */
+        .objectives-container {
+            margin-top: 40px;
+        }
+        
+        .objective-main {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .objective-main::before {
+            content: '🎯';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 60px;
+            opacity: 0.2;
+        }
+        
+        .objective-title {
+            font-size: 1.3em;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .objective-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        
+        .objectives-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .objective-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 4px solid #e91e63;
+            transition: all 0.3s ease;
+        }
+        
+        .objective-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #e91e63, #9c27b0, #3f51b5);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            width: 42%;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #e91e63, #9c27b0);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            white-space: nowrap;
+            font-size: 0.95em;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+            z-index: 2;
+        }
+        
+        .timeline-date::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid #e91e63;
+            border-radius: 50%;
+            left: 50%;
+            top: -35px;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-title {
+            font-size: 1.3em;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        /* Contact CTA */
+        .contact-section {
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .contact-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-text {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+        
+        .contact-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        /* Détails techniques */
+        .tech-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .tech-item {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .tech-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+        
+        .tech-value {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 60px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+                margin: 0 !important;
+            }
+            
+            .timeline-date {
+                position: relative;
+                left: -30px;
+                top: 0;
+                transform: none;
+                margin-bottom: 20px;
+                font-size: 0.85em;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Titre -->
+        <div class="slide title-slide">
+            <div class="curtain-left"></div>
+            <div class="curtain-right"></div>
+            <div class="theater-icon">🎭</div>
+            <h1>TERRASSE CAFÉ</h1>
+            <p class="subtitle">Projet Théâtral Immersif</p>
+            <div class="year-badge">2025 - 2026</div>
+        </div>
+        
+        <!-- Slide 2: Présentation Art & Vie -->
+        <div class="slide">
+            <h2>Art & Vie</h2>
+            <p style="font-size: 1.3em; line-height: 1.8; margin-bottom: 30px;">
+                <strong>Art & Vie</strong> est une association engagée dans la promotion de l'art comme 
+                levier de transformation sociale. Nous utilisons le pouvoir du théâtre pour créer 
+                des ponts entre les générations et sensibiliser aux enjeux sociétaux majeurs.
+            </p>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-icon">👴👵</div>
+                    <div class="card-title">EHPAD</div>
+                    <p>Animations culturelles adaptées pour nos aînés, créant des moments 
+                    de joie et de partage intergénérationnel.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="card-icon">👥</div>
+                    <div class="card-title">Jeunes en Insertion</div>
+                    <p>Ateliers théâtraux pour développer la confiance en soi et 
+                    faciliter l'insertion sociale et professionnelle.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="card-icon">🏢</div>
+                    <div class="card-title">Entreprises</div>
+                    <p>Théâtre d'entreprise pour sensibiliser aux enjeux sociaux 
+                    et renforcer la cohésion d'équipe.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="card-icon">🎓</div>
+                    <div class="card-title">Écoles</div>
+                    <p>Spectacles éducatifs et ateliers pédagogiques pour 
+                    sensibiliser les jeunes aux problématiques actuelles.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3: Le Projet -->
+        <div class="slide">
+            <h2>Le Projet "Terrasse Café"</h2>
+            
+            <p style="font-size: 1.3em; line-height: 1.8; margin-bottom: 40px; text-align: center;">
+                Une expérience théâtrale immersive et itinérante qui transforme 
+                chaque lieu en scène vivante, où l'humour et l'émotion se mêlent 
+                pour éveiller les consciences.
+            </p>
+            
+            <h3>🎬 Notre Approche Artistique</h3>
+            <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 30px;">
+                "Terrasse Café" propose une réponse artistique unique qui mêle <strong>humour</strong>, 
+                <strong>émotion</strong> et <strong>réflexion</strong> pour inspirer le changement. 
+                À travers des sketches percutants et accessibles, nous abordons des thématiques 
+                essentielles de notre société.
+            </p>
+            
+            <div class="theme-container">
+                <div class="theme-item">
+                    <div class="theme-number">1</div>
+                    <div class="theme-text">
+                        <strong>Violences basées sur le genre</strong> - 
+                        Sensibilisation et prévention à travers des situations du quotidien
+                    </div>
+                </div>
+                
+                <div class="theme-item">
+                    <div class="theme-number">2</div>
+                    <div class="theme-text">
+                        <strong>Solidarité intergénérationnelle</strong> - 
+                        Créer des ponts entre les âges pour une société plus unie
+                    </div>
+                </div>
+                
+                <div class="theme-item">
+                    <div class="theme-number">3</div>
+                    <div class="theme-text">
+                        <strong>Addictions et décrochage scolaire</strong> - 
+                        Prévention et accompagnement des jeunes en difficulté
+                    </div>
+                </div>
+                
+                <div class="theme-item">
+                    <div class="theme-number">4</div>
+                    <div class="theme-text">
+                        <strong>Urgence écologique</strong> - 
+                        Éveiller les consciences aux enjeux environnementaux
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 4: Objectifs -->
+        <div class="slide">
+            <h2>Nos Objectifs</h2>
+            
+            <div class="objectives-container">
+                <div class="objective-main">
+                    <div class="objective-title">Objectif Général</div>
+                    <div class="objective-text">
+                        Offrir une prestation théâtrale immersive et itinérante qui divertit 
+                        tout en éveillant les consciences sur les enjeux sociétaux majeurs.
+                    </div>
+                </div>
+                
+                <div class="objectives-list">
+                    <div class="objective-item">
+                        <h4 style="color: #e91e63; margin-bottom: 15px;">Sensibilisation</h4>
+                        <p>Éveiller le public aux problématiques sociétales et 
+                        environnementales à travers l'art.</p>
+                    </div>
+                    
+                    <div class="objective-item">
+                        <h4 style="color: #9c27b0; margin-bottom: 15px;">Dialogue</h4>
+                        <p>Favoriser les échanges et discussions post-spectacle 
+                        pour approfondir la réflexion.</p>
+                    </div>
+                    
+                    <div class="objective-item">
+                        <h4 style="color: #3f51b5; margin-bottom: 15px;">Cohésion</h4>
+                        <p>Créer des moments de partage et de réflexion collective 
+                        pour renforcer le lien social.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 5: Format & Public -->
+        <div class="slide">
+            <h2>Format & Public</h2>
+            
+            <div class="tech-details">
+                <div class="tech-item">
+                    <div class="tech-icon">⏱️</div>
+                    <div class="tech-label">Durée</div>
+                    <div class="tech-value">1h30<br>(spectacle + échange)</div>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">📍</div>
+                    <div class="tech-label">Lieux</div>
+                    <div class="tech-value">Cafés, salles adaptées,<br>espaces partenaires</div>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🎪</div>
+                    <div class="tech-label">Format</div>
+                    <div class="tech-value">Spectacle itinérant<br>et immersif</div>
+                </div>
+            </div>
+            
+            <h3 style="text-align: center; margin-top: 50px;">Nos Publics</h3>
+            <div class="audience-container">
+                <div class="audience-item">👴 Seniors</div>
+                <div class="audience-item">👦 Jeunes</div>
+                <div class="audience-item">💼 Salariés</div>
+                <div class="audience-item">👨‍👩‍👧‍👦 Familles</div>
+                <div class="audience-item">🏘️ Communautés locales</div>
+                <div class="audience-item">🎓 Étudiants</div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Planning -->
+        <div class="slide">
+            <h2>Planning 2025-2026</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-title">Phase de Préparation</div>
+                        <p>Finalisation du script, répartition des rôles, 
+                        lancement des répétitions, démarches partenaires.</p>
+                    </div>
+                    <div class="timeline-date">OCTOBRE 2025</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-title">Communication</div>
+                        <p>Mise en place du plan de communication et 
+                        confection des supports promotionnels.</p>
+                    </div>
+                    <div class="timeline-date">NOVEMBRE 2025</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-title">Répétitions Intensives</div>
+                        <p>Perfectionnement des sketches, ajustements finaux, 
+                        répétitions générales.</p>
+                    </div>
+                    <div class="timeline-date">JANVIER 2026</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-title">Lancement du Spectacle</div>
+                        <p>Premières représentations publiques, collecte des retours 
+                        et évaluation des impacts.</p>
+                    </div>
+                    <div class="timeline-date">FÉVRIER 2026</div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 30px; border-radius: 15px; margin-top: 40px; text-align: center"
