@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partenariat Art & Vie × AEJ Boucle Nord</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tab-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tab-button:hover, .tab-button.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: #764ba2;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .synergy-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .synergy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .synergy-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            background: #4facfe;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px white;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .highlight {
+            background: rgba(118, 75, 162, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+            margin: 20px 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-button {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎭 Partenariat Stratégique</h1>
+            <p>Association Art & Vie × AEJ Boucle Nord HDS</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">16-21</span>
+                    <span class="stat-label">ans</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">programmes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">mois</span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-button active" onclick="showSection('notre-offre')">Notre Offre</button>
+            <button class="tab-button" onclick="showSection('synergie')">Synergie</button>
+            <button class="tab-button" onclick="showSection('programme')">Programme</button>
+            <button class="tab-button" onclick="showSection('planning')">Planning</button>
+            <button class="tab-button" onclick="showSection('impact')">Impact</button>
+            <button class="tab-button" onclick="showSection('contact')">Contact</button>
+        </nav>
+
+        <section id="notre-offre" class="content-section active">
+            <h2 class="section-title">🎯 Notre Offre Spécialement Conçue</h2>
+            
+            <div class="highlight">
+                <h3>🤝 Parfaite Complémentarité avec vos Objectifs</h3>
+                <p>Nos programmes s'alignent parfaitement avec votre mission d'accompagnement des jeunes de 16-21 ans en situation de rupture. Nous proposons trois axes d'intervention qui renforcent votre projet éducatif existant.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🎭 Ateliers Théâtre</h3>
+                    <ul>
+                        <li>Initiation progressive sur 4-6 mois</li>
+                        <li>Développement de l'expression orale</li>
+                        <li>Renforcement de la confiance en soi</li>
+                        <li>Spectacle final avec tous les participants</li>
+                        <li>Intégration du projet "Terrasse Café"</li>
+                        <li>Sensibilisation aux thématiques sociétales</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🎤 Ateliers Slam</h3>
+                    <ul>
+                        <li>Formation à l'art du slam</li>
+                        <li>Expression libre et créative</li>
+                        <li>Développement de l'esprit critique</li>
+                        <li>Concours interne ou inter-résidence</li>
+                        <li>Valorisation des parcours individuels</li>
+                        <li>Création de liens intergénérationnels</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>📚 Soutien Scolaire d'Excellence</h3>
+                    <ul>
+                        <li>Professeurs particuliers qualifiés</li>
+                        <li>Ingénieurs et enseignants expérimentés</li>
+                        <li><strong>🌟 EXPERTISE EXCEPTIONNELLE :</strong> L'un de nos bénévoles accompagne des dizaines de milliers d'élèves via TikTok (@bac.objectif.mention et @sup.objectif)</li>
+                        <li>Spécialités : Maths, Physique, Chimie, SI</li>
+                        <li>Du lycée jusqu'au supérieur</li>
+                        <li>Méthodes pédagogiques innovantes</li>
+                        <li>Accompagnement personnalisé</li>
+                        <li>Préparation aux examens</li>
+                        <li>Orientation vers formations professionnelles</li>
+                        <li>Reprise d'études en candidat libre</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="synergie" class="content-section">
+            <h2 class="section-title">⚡ Synergie Parfaite</h2>
+            
+            <div class="synergy-section">
+                <h3>🎯 Nos Valeurs Communes</h3>
+                <div class="synergy-grid">
+                    <div class="synergy-item">
+                        <span class="icon">🤗</span>
+                        <h4>Confiance</h4>
+                        <p>Comme vous, nous croyons que "La confiance peut sauver l'avenir"</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">🎨</span>
+                        <h4>Expression</h4>
+                        <p>Nous renforçons votre approche Freinet par l'art théâtral</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">🌱</span>
+                        <p>Développement de l'autonomie et de l'esprit critique</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">🤝</span>
+                        <h4>Insertion</h4>
+                        <p>Accompagnement vers la réintégration sociale et professionnelle</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🚀 Notre Atout Exceptionnel : Un Expert Reconnu</h3>
+                <p><strong>Un de nos bénévoles accompagne des dizaines de milliers d'élèves via TikTok :</strong></p>
+                <ul>
+                    <li>🎯 <strong>@bac.objectif.mention</strong> - Support lycée complet</li>
+                    <li>🎓 <strong>@sup.objectif</strong> - Accompagnement supérieur</li>
+                    <li>📚 Spécialités : Maths, Physique, Chimie, Sciences de l'Ingénieur</li>
+                    <li>💡 Méthodes pédagogiques innovantes et ludiques</li>
+                    <li>📱 Approche moderne adaptée à la génération de vos jeunes</li>
+                </ul>
+                <p><strong>Cette expertise unique garantit un accompagnement scolaire de très haut niveau, avec des méthodes qui parlent aux jeunes d'aujourd'hui.</strong></p>
+            </div>
+        </section>
+
+        <section id="programme" class="content-section">
+            <h2 class="section-title">📋 Programme Détaillé</h2>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🎭 Module Théâtre (4-6 mois)</h3>
+                    <p><strong>Phase 1 :</strong> Découverte et initiation (2 mois)</p>
+                    <ul>
+                        <li>Exercices d'expression corporelle</li>
+                        <li>Travail sur la voix et la diction</li>
+                        <li>Jeux théâtraux de confiance</li>
+                    </ul>
+                    <p><strong>Phase 2 :</strong> Création et répétitions (2-3 mois)</p>
+                    <ul>
+                        <li>Travail sur des sketches du projet "Terrasse Café" (pièce théâtrale sensibilisant aux violences conjugales, isolement intergénérationnel, addictions et urgence écologique)</li>
+                        <li>Répétitions et mise en scène</li>
+                        <li>Discussions sur les thématiques abordées</li>
+                    </ul>
+                    <p><strong>Phase 3 :</strong> Représentation finale (1 mois)</p>
+                    <ul>
+                        <li>Spectacle devant public</li>
+                        <li>Débat post-spectacle</li>
+                        <li>Célébration des réussites</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>🎤 Module Slam (3-4 mois)</h3>
+                    <p><strong>Découverte :</strong> Histoire et codes du slam</p>
+                    <p><strong>Création :</strong> Écriture de textes personnels</p>
+                    <p><strong>Performance :</strong> Techniques de scène</p>
+                    <p><strong>Concours :</strong> Événement final valorisant</p>
+                </div>
+
+                <div class="card">
+                    <h3>📚 Soutien Scolaire (Sur mesure)</h3>
+                    <p><strong>Évaluation initiale :</strong> Bilan de compétences</p>
+                    <p><strong>Plan personnalisé :</strong> Objectifs adaptés</p>
+                    <p><strong>Accompagnement :</strong> Cours individuels ou petits groupes</p>
+                    <p><strong>Orientation :</strong> Vers formations ou examens</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>🎯 Adaptation à Votre Rythme</h3>
+                <p>Nos programmes s'adaptent parfaitement à votre organisation actuelle :</p>
+                <ul>
+                    <li><strong>Matinées :</strong> Soutien scolaire complémentaire à vos cours de remobilisation</li>
+                    <li><strong>Après-midis :</strong> Ateliers théâtre et slam en complément de vos activités</li>
+                    <li><strong>Soirées :</strong> Préparation aux représentations et concours</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="planning" class="content-section">
+            <h2 class="section-title">📅 Calendrier de Déploiement</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>🚀 Septembre-Octobre 2025 - Lancement</h4>
+                    <ul>
+                        <li>Rencontre avec les équipes éducatives</li>
+                        <li>Présentation aux jeunes et familles</li>
+                        <li>Constitution des groupes d'ateliers</li>
+                        <li>Début du soutien scolaire individualisé</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>📈 Novembre-Décembre 2025 - Développement</h4>
+                    <ul>
+                        <li>Ateliers théâtre : phase d'initiation</li>
+                        <li>Ateliers slam : découverte et premiers textes</li>
+                        <li>Accompagnement scolaire : suivi personnalisé</li>
+                        <li>Première évaluation des progrès</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>🎭 Janvier-Février 2026 - Création</h4>
+                    <ul>
+                        <li>Répétitions intensives pour le spectacle "Terrasse Café"</li>
+                        <li>Préparation du concours de slam</li>
+                        <li>Préparation aux examens (candidats libres)</li>
+                        <li>Communication vers les partenaires</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>🌟 Mars 2026 - Représentations</h4>
+                    <ul>
+                        <li>Spectacle "Terrasse Café" avec vos jeunes</li>
+                        <li>Concours de slam inter-résidence</li>
+                        <li>Sessions d'examens accompagnés</li>
+                        <li>Bilan et perspectives d'avenir</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="content-section">
+            <h2 class="section-title">📊 Impact Attendu</h2>
+
+            <div class="synergy-section">
+                <h3>🎯 Bénéfices pour Vos Jeunes</h3>
+                <div class="synergy-grid">
+                    <div class="synergy-item">
+                        <span class="icon">💪</span>
+                        <h4>Confiance en Soi</h4>
+                        <p>Renforcement par la performance artistique</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">🗣️</span>
+                        <h4>Expression Orale</h4>
+                        <p>Développement des compétences communicationnelles</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">🧠</span>
+                        <h4>Esprit Critique</h4>
+                        <p>Réflexion sur les enjeux de société</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">🎓</span>
+                        <h4>Remobilisation</h4>
+                        <p>Reprise d'un parcours de formation</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>📈 Indicateurs de Réussite</h3>
+                <ul>
+                    <li><strong>Participation :</strong> Taux d'assiduité aux ateliers</li>
+                    <li><strong>Expression :</strong> Évolution des compétences orales</li>
+                    <li><strong>Scolaire :</strong> Nombre de jeunes réintégrant un cursus</li>
+                    <li><strong>Social :</strong> Amélioration des relations interpersonnelles</li>
+                    <li><strong>Artistique :</strong> Qualité des productions finales</li>
+                </ul>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🎭 Théâtre</h3>
+                    <p>Spectacle final mobilisant 15-20 jeunes</p>
+                    <p>Sensibilisation de 100+ personnes</p>
+                </div>
+                <div class="card">
+                    <h3>🎤 Slam</h3>
+                    <p>Formation de 10-15 jeunes slammeurs</p>
+                    <p>Concours valorisant inter-structures</p>
+                </div>
+                <div class="card">
+                    <h3>📚 Scolaire</h3>
+                    <p>Accompagnement individualisé</p>
+                    <p>Réussite aux examens ciblés</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2 class="section-title">📞 Prochaines Étapes</h2>
+            
+            <div class="contact-info">
+                <h3>🤝 Rencontrons-nous !</h3>
+                <p>Nous sommes enthousiastes à l'idée de collaborer avec votre équipe remarquable.</p>
+                <p>Organisons un rendez-vous pour détailler ce partenariat sur mesure.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>📋 Proposition de Première Rencontre</h3>
+                <ul>
+                    <li><strong>Lieu :</strong> Dans vos locaux au 39 rue Adam Ledoux</li>
+                    <li><strong>Durée :</strong> 2h avec votre équipe éducative</li>
+                    <li><strong>Ordre du jour :</strong></li>
+                    <ul>
+                        <li>Présentation détaillée de nos programmes</li>
+                        <li>Adaptation à votre projet éducatif</li>
+                        <li>Planning et modalités pratiques</li>
+                        <li>Rencontre avec quelques jeunes intéressés</li>
+                        <li>Définition des objectifs communs</li>
+                    </ul>
+                </ul>
+            </div>
+
+            <div class="synergy-section">
+                <h3>🎯 Notre Engagement</h3>
+                <p>Nous nous engageons à :</p>
+                <div class="synergy-grid">
+                    <div class="synergy-item">
+                        <span class="icon">🤝</span>
+                        <h4>Flexibilité</h4>
+                        <p>Adaptation totale à vos besoins</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">💯</span>
+                        <h4>Qualité</h4>
+                        <p>Intervenants expérimentés et diplômés</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">📊</span>
+                        <h4>Suivi</h4>
+                        <p>Évaluation régulière des progrès</p>
+                    </div>
+                    <div class="synergy-item">
+                        <span class="icon">🎯</span>
+                        <h4>Résultats</h4>
+                        <p>Objectifs mesurables et atteignables</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Add smooth scrolling and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards and timeline items
+            const animatedElements = document.querySelectorAll('.card, .timeline-item, .synergy-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
